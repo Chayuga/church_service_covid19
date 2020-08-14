@@ -214,49 +214,82 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
                     height: 20,
                   ),
 
-                  MaterialButton(
-                    elevation: 0,
-                    height: 40,
-                    onPressed: () {
-                      setState(
-                        () {
-                          //validate textFields
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MaterialButton(
+                        elevation: 0,
+                        height: 40,
+                        onPressed: () {
+                          setState(
+                            () {
+                              //validate textFields
 
-                          if (_mobile.text.isEmpty && _password.text.isEmpty) {
-                            _validate = true;
-                            _showSnackBar("Fields required");
-                          } else if (_mobile.text.isNotEmpty &&
-                              _password.text.isEmpty) {
-                            _validate = true;
-                            _showSnackBar("Password required");
-                          } else if (_mobile.text.isEmpty &&
-                              _password.text.isNotEmpty) {
-                            _validate = true;
-                            _showSnackBar("Mobile required");
-                          } else {
-                            if (_formKey.currentState.validate()) {
-                              pr.show();
-                              _validate = false;
-                              _submit();
-                            }
-                          }
+                              if (_mobile.text.isEmpty &&
+                                  _password.text.isEmpty) {
+                                _validate = true;
+                                _showSnackBar("Fields required");
+                              } else if (_mobile.text.isNotEmpty &&
+                                  _password.text.isEmpty) {
+                                _validate = true;
+                                _showSnackBar("Password required");
+                              } else if (_mobile.text.isEmpty &&
+                                  _password.text.isNotEmpty) {
+                                _validate = true;
+                                _showSnackBar("Mobile required");
+                              } else {
+                                if (_formKey.currentState.validate()) {
+                                  pr.show();
+                                  _validate = false;
+                                  _submit();
+                                }
+                              }
+                            },
+                          );
                         },
-                      );
-                    },
-                    color: logoGreen,
-                    child: Text(
-                      'Login',
-                      style: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: 16),
-                    ),
+                        color: logoGreen,
+                        child: Text(
+                          'Login',
+                          style: GoogleFonts.openSans(
+                              color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'forgot ',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.openSans(
+                                color: Colors.white, fontSize: 14),
+                          ),
+                          SizedBox(width: 5),
+                          GestureDetector(
+                            child: Text(
+                              'password?',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.openSans(
+                                  color: logoGreen,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpScreen()),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
 
-                  SizedBox(height: 40),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: _buildFooterLogo(),
-                  ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 50),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -286,6 +319,11 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
                       ),
                     ],
                   ),
+                  SizedBox(height: 20),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: _buildFooterLogo(),
+                  ),
                 ],
               ),
             ),
@@ -296,16 +334,16 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
   }
 
   _buildFooterLogo() {
-    return Column(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Image.asset(
-          'assets/images/dcu-logo.png',
-          height: 40,
-        ),
-        SizedBox(
-          height: 10,
-        ),
+        // Image.asset(
+        //   'assets/images/dcu-logo.png',
+        //   height: 40,
+        // ),
+        // SizedBox(
+        //   width: 10,
+        // ),
         Text('Deliverance Church Utawala',
             textAlign: TextAlign.center,
             style: GoogleFonts.openSans(
