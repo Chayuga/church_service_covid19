@@ -57,7 +57,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                         '$churchName',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 2,
                         ),
