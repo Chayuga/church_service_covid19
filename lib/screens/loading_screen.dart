@@ -13,8 +13,8 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  var appName = 'DCU UTAWALA';
-  var slogan = 'Deliverance Church Utawala';
+  var churchName = "DELIVERANCE CHURCH UTAWALA";
+  var slogan = 'Your Church of Choice';
   final Color primaryColor = Color(0xff18203d);
   @override
   void initState() {
@@ -54,10 +54,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
                         padding: EdgeInsets.only(top: 10.0),
                       ),
                       Text(
-                        '$appName',
+                        '$churchName',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20.0,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 2,
                         ),
@@ -72,7 +72,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(top:30.0,bottom: 5.0),
+                      padding: const EdgeInsets.only(top:20.0,bottom: 10.0),
                       child: Container(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,

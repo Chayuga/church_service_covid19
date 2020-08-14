@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:churchapp/http/http_response/http_response.dart';
 import 'package:churchapp/models/Response.dart';
 import 'package:churchapp/screens/route_controller.dart';
@@ -56,8 +56,10 @@ class Company {
 class BookASeatState extends State<BookASeat> implements HttpCallBack {
   //Primary Color
   final Color primaryColor = Color(0xff18203d);
+  final Color logoGreen = Color(0xff25bcbb);
+  final Color secondaryColor = Color(0xff232c51);
 
-  //Service methode
+  //Service method
   Service _serviceValue;
 
   //declare variables ........................
@@ -226,7 +228,9 @@ class BookASeatState extends State<BookASeat> implements HttpCallBack {
             onPressed: () => logOut(),
           ),
         ],
-        title: Center(child: Text('Book Your Seat'),),
+        title: Center(
+          child: Text('Book Your Seat'),
+        ),
         backgroundColor: primaryColor,
       ),
       body: Container(
@@ -259,7 +263,7 @@ class BookASeatState extends State<BookASeat> implements HttpCallBack {
                                 padding:
                                     const EdgeInsets.fromLTRB(10, 10, 10, 5),
                                 child: Text(
-                                  "Please select your preffered service, the number of seats you want to book and pick a service date, for ease Booking of seat(s) in the specified sunday service",
+                                  "Please select your : \n\n 1. Next available service \n 2. Number of seats \n 3. And Submit \n\nTo book for the next service for the specified sunday service",
                                   style: TextStyle(
                                       color: Color(0xff616161), fontSize: 14.0),
                                 ),
@@ -452,39 +456,33 @@ class BookASeatState extends State<BookASeat> implements HttpCallBack {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
                     child: Container(
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: RaisedButton(
-                              onPressed: () {
-                                setState(() {
-                                 if (_seat.text.isEmpty) {
-                                    _validate = true;
-                                    showToast("Select number of seats");
-                                  } else if (
-                                      _seat.text.isNotEmpty) {
-                                    pr.show();
-                                    _validate = false;
-                                    _submit();
-                                  }
-                                });
-                              },
-                              child: Text('Submit'),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: RaisedButton(
-                              onPressed: () {},
-                              child: Text('Cancel'),
-                            ),
-                          )
-                        ],
+                      width: double.infinity,
+                      child: RaisedButton(
+                        elevation: 1,
+                        onPressed: () {
+                          setState(() {
+                            if (_seat.text.isEmpty) {
+                              _validate = true;
+                              showToast("Select number of seats");
+                            } else if (_seat.text.isNotEmpty) {
+                              pr.show();
+                              _validate = false;
+                              _submit();
+                            }
+                          });
+                        },
+                        color: logoGreen,
+                        child: Text(
+                          'Book now',
+                          style: GoogleFonts.openSans(
+                              color: Color(0xff18203d), fontSize: 16),
+                        ),
                       ),
                     ),
                   ),

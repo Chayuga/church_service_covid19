@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'screens/loading_screen.dart';
 import 'screens/route_controller.dart';
 
-import 'screens/bookin_screen.dart';
+import 'screens/booking_screen.dart';
 
 void main() => runApp(MyApp());
 

@@ -73,7 +73,7 @@ class _BookingStatusState extends State<BookingStatus> {
             onPressed: () => logOut(),
           ),
         ],
-        title: Center(child: Text('Booked on: ')),
+        title: Center(child: Text('My Booking Status')),
         backgroundColor: primaryColor,
       ),
       body: booked.length == 0
@@ -88,44 +88,52 @@ class _BookingStatusState extends State<BookingStatus> {
     return new ListView.builder(
       itemCount: booked.length,
       itemBuilder: (_, index) {
-        return new Container(
-          margin: new EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
-          child: new Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                child: new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    new Padding(
-                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
-                    new Text(
-                        'Selected Service : ${booked[index].serviceType} Service'),
-                    // new Padding(
-                    //     padding: new EdgeInsets.symmetric(vertical: 3.0)),
-                    // new Text('ID : ${booked[index].reservationId}'),
-                    new Padding(
-                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
-                    new Text('Seats : ${booked[index].seatNo}'),
-                    new Padding(
-                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
-                    new Text(
-                        'Remaining seats : ${booked[index].availableSeats}'),
-                    new Padding(
-                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
-                    new Text('Starts : ${booked[index].startHour}'),
-                    new Padding(
-                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
-                    new Text('Ends : ${booked[index].endHour}'),
-                    new Padding(
-                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
-                    new Text('Scheduled for date : ${booked[index].createdAt}'),
-                    new Padding(
-                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
-                  ],
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+          child: new Container(
+            margin: new EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+            child: new Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                child: InkWell(
+                  child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      new Padding(
+                          padding: new EdgeInsets.symmetric(vertical: 3.0)),
+                      new Text(
+                          'Selected Service : ${booked[index].serviceType} Service'),
+                      // new Padding(
+                      //     padding: new EdgeInsets.symmetric(vertical: 3.0)),
+                      // new Text('ID : ${booked[index].reservationId}'),
+                      new Padding(
+                          padding: new EdgeInsets.symmetric(vertical: 3.0)),
+                      new Text(
+                          'No of Seats Reserved : ${booked[index].seatNo}'),
+                      new Padding(
+                          padding: new EdgeInsets.symmetric(vertical: 3.0)),
+                      new Text(
+                          'Remaining seats : ${booked[index].availableSeats}'),
+//                    new Padding(
+//                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
+//                    new Text('Starts : ${booked[index].startHour}'),
+//                    new Padding(
+//                        padding: new EdgeInsets.symmetric(vertical: 3.0)),
+//                    new Text('Ends : ${booked[index].endHour}'),
+                      new Padding(
+                          padding: new EdgeInsets.symmetric(vertical: 3.0)),
+                      new Text('Date Reserved : ${booked[index].createdAt}'),
+                      new Padding(
+                          padding: new EdgeInsets.symmetric(vertical: 9.0)),
+                      new Text('status : '),
+                      new Padding(
+                          padding: new EdgeInsets.symmetric(vertical: 3.0)),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -12,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 enum Gender { MALE, FEMALE, OTHER }
-enum Age { A, B, C, D, E, F, G, H, I }
+enum Age { A, B, C, D, E, F, G, H, I, J }
 
 extension AgeExtension on Age {
   String get age {
@@ -34,7 +34,9 @@ extension AgeExtension on Age {
       case Age.H:
         return '56-60';
       case Age.I:
-        return 'Above 60';
+        return '61-65';
+      case Age.J:
+        return 'Above 65';
       default:
         return null;
     }
@@ -530,8 +532,20 @@ class _SurveyQuizState extends State<SurveyQuiz> implements HttpCallBack {
                                 },
                               ),
                               RadioListTile(
-                                title: const Text('Above 60 yrs'),
-                                value: Age.I,
+                                title: const Text('61-65yrs'),
+                                value: Age.H,
+                                groupValue: _ageValue,
+                                onChanged: (Age value) {
+                                  setState(() {
+                                    _ageValue = value;
+                                    Age _age = value;
+                                    age = _age.age;
+                                  });
+                                },
+                              ),
+                              RadioListTile(
+                                title: const Text('Above 65 yrs'),
+                                value: Age.J,
                                 groupValue: _ageValue,
                                 onChanged: (Age value) {
                                   setState(() {
@@ -573,7 +587,7 @@ class _SurveyQuizState extends State<SurveyQuiz> implements HttpCallBack {
                                     String g = value.toString().substring(
                                         value.toString().indexOf('.') + 1);
                                     gender = g;
-                                  });
+                                  },);
                                 },
                               ),
                               RadioListTile(

@@ -1,55 +1,53 @@
 import 'package:churchapp/screens/status_screen.dart';
-import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
-import 'package:circle_bottom_navigation/widgets/tab_data.dart';
+//import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
+//import 'package:circle_bottom_navigation/widgets/tab_data.dart';
 import 'package:flutter/material.dart';
 
-import 'bookin_screen.dart';
+import 'booking_screen.dart';
 
 class MyNavBar extends StatefulWidget {
+  MyNavBar({Key key}) : super(key: key);
+
   @override
   _MyNavBarState createState() => _MyNavBarState();
 }
 
 class _MyNavBarState extends State<MyNavBar> {
-
-  //declare primary color
-  final Color primaryColor = Color(0xff18203d);
-
-  int currentPage = 0;
-  final List<Widget> _pages = [
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static List<Widget> _pages = <Widget>[
+    //Add pages to appear on the App, via Navigation Bar
     BookASeat(),
     BookingStatus(),
-    //Add pages to appear on the App, via Navigation Bar
   ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[currentPage],
-      bottomNavigationBar: CircleBottomNavigation(
-        barHeight: 40,
-        circleSize: 45,
-        initialSelection: currentPage,
-        inactiveIconColor: primaryColor,
-        textColor: primaryColor,
-        hasElevationShadows: false,
-        tabs: [
-          TabData(
-            icon: Icons.home,
-            iconSize: 30,
-            title: 'Home',
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
+      body: Center(
+        child: _pages.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event_note),
+            title: Text('Reservation'),
           ),
-          TabData(
-            icon: Icons.history,
-            iconSize: 25,
-            title: 'Status',
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            title: Text('Status'),
           ),
         ],
-        onTabChangedListener: (index) => setState(() => currentPage = index),
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.teal,
+        onTap: _onItemTapped,
       ),
     );
   }

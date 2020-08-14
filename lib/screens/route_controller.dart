@@ -1,7 +1,5 @@
-import 'dart:async';
 
 import 'package:churchapp/registration/login_screen.dart';
-import 'package:churchapp/screens/bookin_screen.dart';
 import 'package:churchapp/screens/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,7 +40,7 @@ class _RouteControllerState extends State<RouteController> {
         break;
       case LoginStatus.signIn:
       // TODO: Handle this case.
-        return BookASeat();
+        return MyNavBar();
         break;
     }
   }
