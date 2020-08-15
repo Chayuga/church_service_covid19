@@ -14,7 +14,7 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
   var churchName = "DELIVERANCE CHURCH UTAWALA";
-  var slogan = 'Your Church of Choice';
+  var slogan = 'The Church of Choice';
   final Color primaryColor = Color(0xff18203d);
   @override
   void initState() {
