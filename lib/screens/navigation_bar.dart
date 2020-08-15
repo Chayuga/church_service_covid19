@@ -1,3 +1,4 @@
+import 'package:churchapp/screens/status_screen.dart';
 import 'package:churchapp/screens/welcome_screen.dart';
 //import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
 //import 'package:circle_bottom_navigation/widgets/tab_data.dart';
@@ -23,6 +24,7 @@ class _MyNavBarState extends State<MyNavBar> {
 
     WelcomeScreen(),
     BookASeat(),
+    BookingStatus(),
   ];
 
   void _onItemTapped(int index) {
@@ -46,6 +48,10 @@ class _MyNavBarState extends State<MyNavBar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.event_note),
             title: Text('Reservation'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            title: Text('Status'),
           ),
         ],
         currentIndex: _selectedIndex,
