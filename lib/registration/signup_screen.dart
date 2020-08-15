@@ -202,6 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> implements HttpCallBack {
                       border: Border.all(color: Colors.blue),
                       borderRadius: BorderRadius.circular(20)),
                   child: TextFormField(
+                    onSaved: (val) => password = val,
                     obscureText: true,
                     keyboardType: TextInputType.text,
                     controller: _password,
@@ -225,7 +226,7 @@ class _SignUpScreenState extends State<SignUpScreen> implements HttpCallBack {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    // color: secondaryColor,
+                      // color: secondaryColor,
                       border: Border.all(color: Colors.blue),
                       borderRadius: BorderRadius.circular(20)),
                   child: TextFormField(
@@ -233,10 +234,10 @@ class _SignUpScreenState extends State<SignUpScreen> implements HttpCallBack {
                     keyboardType: TextInputType.visiblePassword,
                     controller: _conPassword,
                     style:
-                    GoogleFonts.openSans(color: Colors.white, fontSize: 14),
+                        GoogleFonts.openSans(color: Colors.white, fontSize: 14),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        labelText: 'Repeat Password',
+                        labelText: 'Cofirm Password',
                         labelStyle: TextStyle(color: Colors.white),
                         icon: Icon(
                           Icons.lock,
@@ -302,19 +303,15 @@ class _SignUpScreenState extends State<SignUpScreen> implements HttpCallBack {
                               if (!regexEmail.hasMatch(_email.text)) {
                                 _showSnackBar("Enter valid email address");
                               } else {
-
-                                if(_conPassword.text!=_password.text){
+                                if (_conPassword.text != _password.text) {
                                   _showSnackBar("password not matching");
-                                }else{
+                                } else {
                                   if (_formKey.currentState.validate()) {
                                     pr.show();
                                     _validate = false;
                                     _submit();
                                   }
                                 }
-
-
-
                               }
                             }
                           },

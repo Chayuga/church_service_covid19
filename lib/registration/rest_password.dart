@@ -2,7 +2,6 @@
 import 'dart:developer';
 import 'package:churchapp/http/http_response/http_response.dart';
 import 'package:churchapp/models/Response.dart';
-import 'package:churchapp/registration/rest_password.dart';
 import 'package:churchapp/registration/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,14 +9,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatefulWidget {
+import 'login_screen.dart';
+
+class ResetPassword extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _ResetPasswordState createState() => _ResetPasswordState();
 }
 
 enum LoginStatus { notSignIn, signIn }
 
-class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
+class _ResetPasswordState extends State<ResetPassword> implements HttpCallBack {
   //default settings
   final Color primaryColor = Color(0xff18203d);
   final Color secondaryColor = Color(0xff232c51);
@@ -49,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
   HttpResponse _response;
 
   //initialize response
-  _LoginScreenState() {
+  _ResetPasswordState() {
     _response = new HttpResponse(this);
   }
 
@@ -143,13 +144,14 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
                   ),
                   //Texts and Styling of them
                   Text(
-                    'Welcome to DC Utawala',
+                    'Deliverance Church Int\'l Utawala ',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style:
+                    GoogleFonts.openSans(color: Colors.white, fontSize: 18),
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Enter your PHONE and PASSWORD below to login and Book a seat for the next church service!',
+                    'Let\'s reset your password',
                     textAlign: TextAlign.center,
                     style:
                         GoogleFonts.openSans(color: Colors.white, fontSize: 14),
@@ -201,7 +203,34 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                          labelText: 'Password',
+                          labelText: 'New password',
+                          labelStyle: TextStyle(color: Colors.white),
+                          icon: Icon(
+                            Icons.lock,
+                            color: Colors.white,
+                          ),
+                          // prefix: Icon(icon),
+                          border: InputBorder.none),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                        color: secondaryColor,
+                        border: Border.all(color: Colors.blue),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: TextFormField(
+                      obscureText: true,
+                      keyboardType: TextInputType.text,
+                      onSaved: (val) => password = val,
+                      controller: _password,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                          labelText: 'Confirm password',
                           labelStyle: TextStyle(color: Colors.white),
                           icon: Icon(
                             Icons.lock,
@@ -250,42 +279,13 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
                         },
                         color: logoGreen,
                         child: Text(
-                          'Login',
+                          'Reset',
                           style: GoogleFonts.openSans(
                               color: Colors.white, fontSize: 16),
                         ),
                       ),
                       SizedBox(
                         width: 10.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'forgot ',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.openSans(
-                                color: Colors.white, fontSize: 14),
-                          ),
-                          SizedBox(width: 5),
-                          GestureDetector(
-                            child: Text(
-                              'password?',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.openSans(
-                                  color: logoGreen,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ResetPassword()),
-                              );
-                            },
-                          ),
-                        ],
                       ),
                     ],
                   ),
@@ -295,7 +295,7 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Don\'t have an Account?',
+                        'Remembered Password? ',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                             color: Colors.white, fontSize: 14),
@@ -303,7 +303,7 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
                       SizedBox(width: 5),
                       GestureDetector(
                         child: Text(
-                          'SignUp',
+                          'Login',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.openSans(
                               color: logoGreen,
@@ -314,7 +314,7 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SignUpScreen()),
+                                builder: (context) => LoginScreen()),
                           );
                         },
                       ),
@@ -345,42 +345,15 @@ class _LoginScreenState extends State<LoginScreen> implements HttpCallBack {
         // SizedBox(
         //   width: 10,
         // ),
-        Text('Deliverance Church Utawala',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.openSans(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w300)),
+//        Text('Deliverance Church Utawala',
+//            textAlign: TextAlign.center,
+//            style: GoogleFonts.openSans(
+//                color: Colors.white,
+//                fontSize: 20,
+//                fontWeight: FontWeight.w300)),
       ],
     );
   }
-
-  // _buildTextField(TextEditingController controller, IconData icon,
-  //     String labelText, TextInputType keyboardType, obscureText) {
-  //   return Container(
-  //     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-  //     decoration: BoxDecoration(
-  //         color: secondaryColor,
-  //         border: Border.all(color: Colors.blue),
-  //         borderRadius: BorderRadius.circular(20)),
-  //     child: TextFormField(
-  //       obscureText: obscureText,
-  //       keyboardType: keyboardType,
-  //       controller: controller,
-  //       style: TextStyle(color: Colors.white),
-  //       decoration: InputDecoration(
-  //           contentPadding: EdgeInsets.symmetric(horizontal: 10),
-  //           labelText: labelText,
-  //           labelStyle: TextStyle(color: Colors.white),
-  //           icon: Icon(
-  //             icon,
-  //             color: Colors.white,
-  //           ),
-  //           // prefix: Icon(icon),
-  //           border: InputBorder.none),
-  //     ),
-  //   );
-  // }
 
   @override
   void onError(String error) {

@@ -823,7 +823,7 @@ class _SurveyQuizState extends State<SurveyQuiz> implements HttpCallBack {
                                 },
                               ),
                               RadioListTile(
-                                title: const Text('Overcomers'),
+                                title: const Text('Over comers'),
                                 value: Fellowship.OVERCOMERS,
                                 groupValue: _fellowshipValue,
                                 onChanged: (Fellowship value) {
@@ -1395,7 +1395,7 @@ class _SurveyQuizState extends State<SurveyQuiz> implements HttpCallBack {
                                 },
                               ),
                               RadioListTile(
-                                title: const Text('1nd service'),
+                                title: const Text('2nd service'),
                                 value: Service.SECOND,
                                 groupValue: _serviceValue,
                                 onChanged: (Service value) {

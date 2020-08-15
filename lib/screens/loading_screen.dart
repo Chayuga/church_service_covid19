@@ -53,7 +53,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                       Padding(
                         padding: EdgeInsets.only(top: 10.0),
                       ),
-                      Text(
+    Center(child:Text(
                         '$churchName',
                         style: TextStyle(
                           color: Colors.white,
@@ -61,7 +61,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                           fontWeight: FontWeight.bold,
                           letterSpacing: 2,
                         ),
-                      ),
+                      ),),
                     ],
                   ),
                 ),
